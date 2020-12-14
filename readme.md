@@ -42,4 +42,6 @@ You can enter in your resistor values one at a time, or check the box and just c
 
 And just like on the first form, you can copy those raw values to your clipboard in CSV format so that you can paste them into a spreadsheet for further analysis.
 
+I also added the compiled .jar file to the root so all you should need to do is run it using:
 
+>java -jar VoltageDivider.jar
