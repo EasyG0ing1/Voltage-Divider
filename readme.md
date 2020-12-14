@@ -14,6 +14,8 @@ The output values are rounded, voltages to three decimals and resistors to two, 
 
 It's a simple but useful app.
 
+Maven will be able to import all of the necessary libraries, and I included a custom library that I wrote in the root folder that you can import before you run the project. It's called CustomControls.jar
+
 ![Screen Shot 2020-12-14 at 4.40.30 AM.png](src/main/resources/images/Screen%20Shot%202020-12-14%20at%204.40.30%20AM.png)
 
 ![Screen Shot 2020-12-14 at 4.40.39 AM.png](src/main/resources/images/Screen%20Shot%202020-12-14%20at%204.40.39%20AM.png)
