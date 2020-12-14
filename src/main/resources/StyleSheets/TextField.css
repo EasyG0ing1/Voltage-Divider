@@ -1,0 +1,62 @@
+/*******************************************************************************
+ *                                                                             *
+ * Text Fields                                                                 *
+ *                                                                             *
+ ******************************************************************************/
+
+.text-area .scroll-bar:vertical,
+.text-area .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-opacity: 0;
+}
+#leftAlign .text-field {
+    -fx-background-color: transparent;
+    -fx-font-weight: BOLD;
+    -fx-prompt-text-fill: ghostwhite;
+    -fx-alignment: center-left;
+    -focus-color: #4059A9;
+    -unfocus-color: #4d4d4d;
+}
+.text-field, .password-field, .text-area {
+    -fx-background-color: transparent;
+    -fx-font-weight: BOLD;
+    -fx-prompt-text-fill: ghostwhite;
+    -focus-color: #4059A9;
+    -unfocus-color: #4d4d4d;
+}
+/*
+.text-field .error-label, .password-field .error-label, .text-area .error-label {
+    -fx-text-fill: ghostwhite;
+    -fx-font-size: 0.75em;
+}
+
+.text-field .error-icon, .password-field .error-icon, .text-area .error-icon {
+    -fx-fill: ghostwhite;
+    -fx-font-size: 1.0em;
+}
+*/
+
+.text-field {
+    -fx-background-color: transparent;
+    -fx-highlight-fill: rgba(255,110,0,1);
+    -fx-highlight-text-fill: white;
+    -fx-font-size: 10pt;
+    -fx-font-family: "Courier New";
+    -fx-text-fill: ghostwhite;
+    -fx-opacity: 1;
+    -focus-color: transparent;
+}
+.text-field:readonly {
+    -fx-opacity: .6;
+}
+
+.text-field:focused {
+    -fx-background-color: transparent;
+    -fx-font-size: 10pt;
+    -fx-font-family: "Courier New";
+    -fx-text-fill: ghostWhite;
+    -fx-opacity: 1;
+}
+
+

@@ -1,0 +1,279 @@
+/*******************************************************************************
+ *                                                                             *
+ * Labels                                                                      *
+ *                                                                             *
+ ******************************************************************************/
+
+
+.label {
+	-fx-font-size: 10pt;
+	-fx-background-color: transparent;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: ghostwhite;
+	-fx-border-color: ghostwhite;
+	-fx-border-width: .1;
+}
+
+.voltage-label {
+	-fx-font-size: 19pt;
+	-fx-background-color: transparent;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: darkorange;
+	-fx-border-color: transparent;
+}
+
+.error-label {
+	-fx-font-size: 14pt;
+	-fx-background-color: transparent;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: rgb(255,0,120);
+	-fx-border-color: transparent;
+}
+
+.checkBoxLabel {
+	-fx-font-size: 8pt;
+	-fx-text-alignment: center;
+	-fx-background-color: transparent;
+	-fx-font-family: "Arial";
+	-fx-text-fill: rgb(255,135,0);
+	-fx-line-spacing: -2;
+}
+
+.label-header {
+	-fx-font-size: 12pt;
+	-fx-font-family: "Segoe UI Light";
+	-fx-text-fill: ghostwhite;
+	-fx-opacity: 1;
+}
+
+.label-left {
+	-fx-font-size: 10pt;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: ghostwhite;
+	-fx-background-color: transparent;
+	-fx-alignment: top_left-left;
+}
+
+.label-right {
+	-fx-font-size: 10pt;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: rgb(255,155,200);
+	-fx-opacity: 1;
+}
+
+.label-bright {
+	-fx-font-size: 10pt;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: ghostwhite;
+	-fx-opacity: 1;
+}
+
+.label-cyan {
+	-fx-font-size: 15pt;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: cyan;
+}
+
+.big-bright {
+	-fx-font-size: 11.5pt;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: white;
+	-fx-opacity: 1;
+}
+
+.huge-bright {
+	-fx-font-size: 16pt;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: white;
+	-fx-opacity: 1;
+}
+
+.title-label {
+	-fx-font-size: 18pt;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: white;
+	-fx-alignment: top_left;
+	-fx-opacity: 1;
+}
+/**
+.label-otp {
+	-fx-font-size: 25pt;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: rgb(255,155,0);
+	-fx-alignment: top_left;
+	-fx-opacity: 1;
+}
+
+.label-otp-change {
+	-fx-font-size: 25pt;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: rgb(255,75,0);
+	-fx-alignment: top_left;
+	-fx-opacity: 1;
+}
+
+
+**/
+
+.tight-fit {
+	-fx-background-color: transparent;
+	-fx-font-size: 12;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: rgb(255,155,0);
+	-fx-alignment: center;
+	-fx-padding: 0;
+	-fx-label-padding: 0;
+}
+
+.label-otp {
+	-fx-font-size: 24pt;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: rgb(255,155,0);
+	-fx-alignment: center;
+}
+#fade-id {
+	-fx-text-fill: rgb(255,155,0);
+	-fx-opacity: 1;
+}
+.label-otp-change {
+	-fx-font-size: 18pt;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: rgb(255,50,0);
+	-fx-alignment: top_left;
+	-fx-opacity: 1;
+}
+
+.label-Issuer {
+	-fx-font-size: 16pt;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: rgb(255,155,0);
+	-fx-alignment: center;
+	-fx-opacity: 1;
+}
+
+.label-Info {
+	-fx-font-size: 11pt;
+	-fx-font-family: "Avenir";
+	-fx-text-fill: rgb(255,155,0);
+	-fx-alignment: top_left;
+	-fx-opacity: 1;
+}
+
+.label-account {
+	-fx-font-size: 8pt;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: rgb(255,150,50);
+	-fx-alignment: center;
+	-fx-opacity: 1;
+}
+
+.label-orange-main {
+	-fx-font-size: 10pt;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: rgb(255,155,0);
+	-fx-alignment: top_left-left;
+	-fx-opacity: 1;
+}
+
+.label-message {
+	-fx-font-size: 20pt;
+	-fx-font-family: "Avenir";
+	-fx-text-fill: rgb(255,155,0);
+	-fx-alignment: center;
+	-fx-text-alignment: center;
+	-fx-background-color: transparent;
+}
+
+#serverID .label {
+	-fx-background-color: rgba(255,0,0,.5);
+	-fx-font-size: 11pt;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: ghostwhite;
+	-fx-opacity: 0.6;
+}
+
+#clientID .label {
+	-fx-background-color: TRANSPARENT;
+	-fx-font-size: 11pt;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: ghostwhite;
+	-fx-opacity: 0.6;
+}
+
+.label-bright-large {
+	-fx-font-size: 15pt;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: ghostwhite;
+	-fx-opacity: 1;
+}
+
+.label-recipe {
+	-fx-font-size:18pt;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: hotPink;
+	-fx-opacity: 1;
+	-fx-text-alignment:center;
+}
+
+#lblRecipe {
+	-fx-font-size:18pt;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: hotPink;
+	-fx-opacity: 1;
+	-fx-text-alignment:center;
+}
+
+#messageLabel {
+	-fx-font-size:14pt;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: rgb(255,0,120);
+	-fx-opacity: 1;
+	-fx-text-alignment:center;
+}
+
+#recipeName {
+	-fx-font-size:35pt;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: rgb(255,100,0);
+	-fx-opacity: 1;
+}
+
+
+
+#recipeLabel .label {
+	-fx-font-size:9pt;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: orange;
+	-fx-opacity: 1;
+	-fx-text-alignment:center;
+}
+
+#lblRecipeCode {
+	-fx-font-size:12pt;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: Yellow;
+	-fx-opacity: 1;
+	-fx-text-alignment:center;
+}
+
+#finalFlavor {
+	-fx-font-size:10.5pt;
+	-fx-font-family: "Courier New";
+	-fx-text-fill: Yellow;
+	-fx-opacity: 1;
+}
+
+#finalFlavorFaded {
+	-fx-font-size:10.5pt;
+	-fx-font-family: "Courier New";
+	-fx-text-fill: Yellow;
+	-fx-opacity: .3;
+}
+
+#lblSelectedFlavor {
+	-fx-font-size:10pt;
+	-fx-font-family: "Courier New";
+	-fx-text-fill: rgb(255,0,0);
+}
+
+
