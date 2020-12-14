@@ -6,10 +6,12 @@ import java.util.Objects;
 public class C {
     public static        ClassLoader resource        = ClassLoader.getSystemClassLoader();
     public final static  Integer     MAIN_FORM       = 200;
+    public final static  Integer     ADD_RESISTORS   = 201;
     public final static  double      coreWidth       = 900;
     public final static  double      coreHeight      = 600;
     public static final  String      CSS_ANCHOR_PANE = Objects.requireNonNull(resource.getResource("StyleSheets/AnchorPane.css")).toExternalForm();
     public static final  String      CSS_LABEL       = Objects.requireNonNull(resource.getResource("StyleSheets/Label.css")).toExternalForm();
+    public static final  String      CSS_CHECKBOX    = Objects.requireNonNull(resource.getResource("StyleSheets/CheckBox.css")).toExternalForm();
     public static final  String      CSS_BUTTON      = Objects.requireNonNull(resource.getResource("StyleSheets/Button.css")).toExternalForm();
     public static final  String      CSS_TEXT_AREA   = Objects.requireNonNull(resource.getResource("StyleSheets/TextArea.css")).toExternalForm();
     public final static  String      CSS_TEXT_FIELD  = Objects.requireNonNull(resource.getResource("StyleSheets/TextField.css")).toExternalForm();

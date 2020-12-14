@@ -1,0 +1,58 @@
+
+.check-box:determinate {
+    -fx-background-color: transparent;
+}
+
+.check-box:determinate .box {
+    -fx-background-color: transparent;
+    -fx-border-color: darkorange;
+    -fx-border-width: .15em;
+}
+
+.check-box:selected .box {
+    -fx-background-color: linear-gradient(from 19% 19% to 100% 100%,brown,yellow );
+    -fx-border-color: darkorange;
+    -fx-border-width: .15em;
+}
+
+
+/**
+
+.check-box .box {
+    -fx-border-color: linear-gradient(from 25% 25% to 100% 100%, #fff776, #d13c19);
+    -fx-font-weight: BOLD;
+    -fx-background-color: rgba(0,0,0,.3);
+    -fx-border-width: 2px;
+    -fx-padding: 2px;
+    -fx-border-radius: 5px;
+}
+
+.check-box {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: rgba(255,255,255,.8);
+}
+
+.check-box:default {
+}
+
+.check-box:default {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: ghostwhite;
+    -fx-opacity: 1;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: transparent;
+    -fx-padding: 6.5px;
+}
+
+.check-box:selected .box {
+    -fx-background-color: rgba(255,110,0,.8);
+    -fx-background-radius: 1px;
+    -fx-background-insets: 2;
+    -fx-border-width: 1.2px;
+    -fx-border-radius: 5px;
+    -fx-padding: 2px;
+}
+
+**/

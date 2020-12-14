@@ -6,8 +6,6 @@ import com.simtechdata.classHelpers.Switcher;
 import com.simtechdata.controls.*;
 import com.simtechdata.datatypes.CStringBuilder;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.input.KeyCode;
 
@@ -26,32 +24,31 @@ public class MainForm {
         makeMenu();
     }
 
-    private final double               width                    = C.coreWidth;
-    private final double               height                   = C.coreHeight;
-    private final CAnchorPane          ap                       = ap();
-    private final int                  LOCR1                    = 0;
-    private final int                  LOCR2                    = 1;
-    private final int                  LOCVIN                   = 2;
-    private final int                  LOCVOUT                  = 3;
-    private final int                  SET                      = 4;
-    private final int                  CALC                     = 5;
-    private final int                  CLEAR                    = 6;
-    private final int                  R1                       = 10;
-    private final int                  R2                       = 11;
-    private final int                  VIN                      = 12;
-    private final int                  VOUT                     = 13;
-    private final Map<Integer, Double> userValues               = new HashMap<>();
-    private       int                  lastClick                = -1;
+    private final double               width                  = C.coreWidth;
+    private final double               height                 = C.coreHeight;
+    private final CAnchorPane          ap                     = ap();
+    private final int                  LOCR1                  = 0;
+    private final int                  LOCR2                  = 1;
+    private final int                  LOCVIN                 = 2;
+    private final int                  LOCVOUT                = 3;
+    private final int                  SET                    = 4;
+    private final int                  CALC                   = 5;
+    private final int                  CLEAR                  = 6;
+    private final int                  R1                     = 10;
+    private final int                  R2                     = 11;
+    private final int                  VIN                    = 12;
+    private final int                  VOUT                   = 13;
+    private final Map<Integer, Double> userValues             = new HashMap<>();
+    private       int                  lastClick              = -1;
     private       double               currentX;
     private       double               currentY;
     private       Integer              optionSelected;
-    private       Integer   lastCalculatedVariable = -1;
-    private final List<String> valuesCSV              = new ArrayList();
-
-    private CVBox      vbOptions;
-    private CTextField tfEntry;
-    private CTextArea  taResults;
-    private CLabel     lblR1, lblR2, lblVIN, lblVOUT, lblError;
+    private final List<String>         valuesCSV              = new ArrayList();
+    private       boolean              comboActive            = false;
+    private       CVBox                vbOptions;
+    private       CTextField           tfEntry;
+    private       CTextArea            taResults;
+    private       CLabel               lblR1, lblR2, lblVIN, lblVOUT, lblError;
 
     private CAnchorPane ap() {
         return new CAnchorPane(this.width, this.height).styleSheet(C.CSS_ANCHOR_PANE).styleClass("anchor-pane").backImage(C.VOLT_DIV_IMG).backOpacity(1.0).build();
@@ -94,6 +91,18 @@ public class MainForm {
         setControlActions();
     }
 
+    private String extractNumber(String sValue) {
+        if (sValue.contains("k") || sValue.contains("K")) {
+            sValue = sValue.replaceAll("[^\\d.]", "");
+            sValue = String.valueOf(Double.parseDouble(sValue) * 1000);
+        }
+        else if (sValue.contains("m") || sValue.contains("M")) {
+            sValue = sValue.replaceAll("[^\\d.]", "");
+            sValue = String.valueOf(Double.parseDouble(sValue) * 1000000);
+        }
+        return sValue;
+    }
+
     private void setControlActions() {
         ap.setOnMouseClicked(event -> {
             currentX = event.getSceneX();
@@ -120,9 +129,9 @@ public class MainForm {
         });
         tfEntry.setOnKeyPressed(event -> {
             if (event.getCode().equals(KeyCode.ENTER) || event.getCode().equals(KeyCode.TAB)) {
-                String value    = tfEntry.getText();
-                double newValue = Double.parseDouble(value);
-                final String result= formatNumber(newValue);
+                String       value    = extractNumber(tfEntry.getText());
+                double       newValue = Double.parseDouble(value);
+                final String result   = formatNumber(newValue);
                 switch (tfEntry.getPurpose()) {
                     case R1:
                         if (result.equals("TOO HIGH")) {
@@ -172,12 +181,9 @@ public class MainForm {
                 });
             }
         });
-        tfEntry.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\d*") || !newValue.matches("\\.")) {
-                    tfEntry.setText(newValue.replaceAll("[^\\d.]", ""));
-                }
+        tfEntry.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*") || !newValue.matches("\\.") || !newValue.matches("k") || !newValue.matches("K") || !newValue.matches("m") || !newValue.matches("M")) {
+                tfEntry.setText(newValue.replaceAll("[^\\d.mMkK]", ""));
             }
         });
         valuesCSV.add("R1,R2,VIN,VR1,VR2");
@@ -186,21 +192,29 @@ public class MainForm {
     private void makeMenu() {
         CButton exitButton = new CButton("Exit").styleSheet(C.CSS_BUTTON).width(65).build();
         CButton btnReset   = new CButton("Reset").styleSheet(C.CSS_BUTTON).width(65).build();
-        CButton btnCopyLog   = new CButton("Copy Log").styleSheet(C.CSS_BUTTON).width(65).build();
+        CButton btnCopyLog = new CButton("Copy Log").styleSheet(C.CSS_BUTTON).width(65).build();
+        CButton btnCombos  = new CButton("Combo Finder").styleSheet(C.CSS_BUTTON).width(65).build();
         btnReset.setOnAction(e -> {
             for (int x = R1; x <= VOUT; x++) clearValue(x);
         });
         exitButton.setOnAction(e -> closeApp());
-        btnCopyLog.setOnAction(e->{
+        btnCopyLog.setOnAction(e -> {
             String finalCSV = "";
-            for (String log:valuesCSV) {
+            for (String log : valuesCSV) {
                 finalCSV += log + "\n";
             }
             StringSelection stringSelection = new StringSelection(finalCSV);
             Clipboard       clipboard       = Toolkit.getDefaultToolkit().getSystemClipboard();
             clipboard.setContents(stringSelection, null);
         });
-        CMenu menu = Switcher.getMenu(C.MAIN_FORM).withButton(btnReset).withButton(btnCopyLog).withExitButton(exitButton).build();
+        btnCombos.setOnAction(e -> {
+            if (comboActive) Switcher.showLastScene();
+            else {
+                comboActive = true;
+                new AddResistors().showForm();
+            }
+        });
+        CMenu menu = Switcher.getMenu(C.MAIN_FORM).withButton(btnReset).withButton(btnCopyLog).withButton(btnCombos).withExitButton(exitButton).build();
         menu.finishMenu();
     }
 
@@ -212,14 +226,14 @@ public class MainForm {
         if (vinSet && r1Set && r2Set && voutSet) {
             final CStringBuilder csb = new CStringBuilder();
             final CStringBuilder log = new CStringBuilder();
-            double         vr1 = userValues.get(VIN) - userValues.get(VOUT);
-            double         LR1 = userValues.get(R1);
-            double         LR2 = userValues.get(R2);
-            String sR1 = String.valueOf(LR1);
-            String sR2 = String.valueOf(LR2);
-            String vIN = String.valueOf(userValues.get(VIN));
-            String vR1 = String.valueOf(vr1);
-            String vR2 = String.valueOf(userValues.get(VOUT));
+            double               vr1 = userValues.get(VIN) - userValues.get(VOUT);
+            double               LR1 = userValues.get(R1);
+            double               LR2 = userValues.get(R2);
+            String               sR1 = String.valueOf(LR1);
+            String               sR2 = String.valueOf(LR2);
+            String               vIN = String.valueOf(userValues.get(VIN));
+            String               vR1 = String.valueOf(vr1);
+            String               vR2 = String.valueOf(userValues.get(VOUT));
             log.a(sR1).cm().a(sR2).cm().a(vIN).cm().a(vR1).cm().a(vR2);
             valuesCSV.add(log.toString());
             csb.a("R1 = ").a(formatNumber(LR1));
@@ -334,7 +348,6 @@ public class MainForm {
         if (option == SET) {
             Platform.runLater(() -> {
                 clearValue(R1);
-                clearValue(lastCalculatedVariable);
                 tfEntry.setPurpose(R1);
                 tfEntry.showAt(350, 305);
                 tfEntry.requestFocus();
@@ -353,7 +366,6 @@ public class MainForm {
         if (option == SET) {
             Platform.runLater(() -> {
                 clearValue(R2);
-                clearValue(lastCalculatedVariable);
                 tfEntry.setPurpose(R2);
                 tfEntry.showAt(340, 465);
                 tfEntry.requestFocus();
@@ -372,7 +384,6 @@ public class MainForm {
         if (option == SET) {
             Platform.runLater(() -> {
                 clearValue(VIN);
-                clearValue(lastCalculatedVariable);
                 tfEntry.setPurpose(VIN);
                 tfEntry.showAt(5, 410);
                 tfEntry.requestFocus();
@@ -391,7 +402,6 @@ public class MainForm {
         if (option == SET) {
             Platform.runLater(() -> {
                 clearValue(VOUT);
-                clearValue(lastCalculatedVariable);
                 tfEntry.setPurpose(VOUT);
                 tfEntry.showAt(570, 480);
                 tfEntry.requestFocus();
@@ -420,7 +430,6 @@ public class MainForm {
             Platform.runLater(() -> {
                 lblVOUT.setText(String.valueOf(C.round(vout, 2)) + "V");
             });
-            lastCalculatedVariable = VOUT;
             logResults();
         }
         else {
@@ -453,7 +462,6 @@ public class MainForm {
             Platform.runLater(() -> {
                 lblR1.setText(formatNumber((long) r1));
             });
-            lastCalculatedVariable = R1;
             logResults();
         }
         else {
@@ -486,7 +494,6 @@ public class MainForm {
             Platform.runLater(() -> {
                 lblR2.setText(formatNumber((long) r2));
             });
-            lastCalculatedVariable = R2;
             logResults();
         }
         else {
@@ -519,7 +526,6 @@ public class MainForm {
             Platform.runLater(() -> {
                 lblVIN.setText(String.valueOf(C.round(vin, 2)) + "V");
             });
-            lastCalculatedVariable = VIN;
             logResults();
         }
         else {
@@ -619,5 +625,9 @@ public class MainForm {
     public void start() {
         Switcher.showScene(C.MAIN_FORM);
         new Thread(monitorMouseClicks()).start();
+    }
+
+    public void showForm() {
+        Switcher.showScene(C.MAIN_FORM);
     }
 }
