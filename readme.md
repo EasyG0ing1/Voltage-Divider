@@ -45,3 +45,5 @@ And just like on the first form, you can copy those raw values to your clipboard
 I also added the compiled .jar file to the root so all you should need to do is run it using:
 
 >java -jar VoltageDivider.jar
+
+Using Java 1.8
